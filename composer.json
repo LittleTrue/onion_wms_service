@@ -1,0 +1,33 @@
+{
+    "name": "gxz/onion_wms_service",
+    "type": "library",
+    "keywords": [
+        "onion_wms_service",
+        "onion_wms",
+        "wms_service"
+    ],
+    "authors": [
+        {
+            "name": "littleTrue",
+            "email": "644812368@qq.com",
+            "homepage": "https://www.jianshu.com/u/8775ddf16c8b"
+        }
+    ],
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=5.6",
+        "adbario/php-dot-notation": "^2.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "pimple/pimple": "v2.1.1",
+        "ext-json": "*"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "onion\\onionWmsClient\\": "src/client/",
+            "onion\\onionWmsService\\": "src/service/",
+            "onion\\": "src/"
+        }
+    }
+}
