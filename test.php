@@ -26,7 +26,7 @@ $synSalesBillService  = new SynSalesBillService($ioc_con_app);
 //         [
 //             'batchno'     => '',
 //             'boxnum'      => '0',
-//             'cusgoodsno'  => '11001',
+//             'cusgoodsno'  => 'FW01027667543725',
 //             'desp'        => '',
 //             'goodsname'   => '测试品01保质期',
 //             'packageType' => '',
@@ -59,76 +59,12 @@ $synSalesBillService  = new SynSalesBillService($ioc_con_app);
 
 //---------------------------------------
 //*************************************
-// //调拨同步
-// $info = [
-//     'details' => [
-//         [
-//             'batchno'         => '',
-//             'cusgoodsno'      => '11001',
-//             'desp'            => '',
-//             'expireddateend'  => null,
-//             'expireddatefrom' => null,
-//             'goodsname'       => '测试品01保质期',
-//             'packageType'     => '',
-//             'pcs'             => 1000,
-//             'unitprice'       => '0',
-//             'volume'          => '0',
-//             'weight'          => '0',
-//         ],
-//     ],
-//     'header' => [
-//         'bighead'             => '',
-//         'billstat'            => '009000',
-//         'billtime'            => null,
-//         'brandcode'           => 'CS',
-//         'codfee'              => '0',
-//         'cusbillno'           => '2017090211',
-//         'desp'                => '',
-//         'destcode'            => '',
-//         'idcard'              => '',
-//         'insurefee'           => 0,
-//         'logisticscode'       => 'shunfeng',
-//         'logisticsno'         => '',
-//         'monthpayno'          => '',
-//         'orginalregioncode'   => '',
-//         'outtype'             => '002001',
-//         'postcode'            => '',
-//         'recvaddr'            => '',
-//         'recvarea'            => '',
-//         'recvcity'            => '',
-//         'recvcus'             => '鲜生',
-//         'recvmobile'          => '13530731922',
-//         'recvphone'           => '',
-//         'recvprovince'        => '',
-//         'sndaddr'             => '',
-//         'sndcus'              => '',
-//         'sndmobile'           => '',
-//         'sndphone'            => '',
-//         'totalpcs'            => 0,
-//         'totalvolume'         => 0,
-//         'ytothree'            => '',
-//         'globalLogisticsNo'   => '',
-//         'globalLogisticsCode' => '',
-//         'globalLogisticsUrl'  => 'http://www.pdfpath.com/pdfinfo',
-//     ],
-// ];
-
-// $declareConfig = [
-//     'customerCode' => 'TT',
-//     'sitecode'     => 'TEST01',
-// ];
-// $tmp = $synAllocationService->startSyncing($info, $declareConfig);
-// var_dump($tmp);
-// die();
-
-//---------------------------------------
-//*************************************
-//销售单同步
+//调拨同步
 $info = [
     'details' => [
         [
             'batchno'         => '',
-            'cusgoodsno'      => '11001',
+            'cusgoodsno'      => 'FW01027667543725',
             'desp'            => '',
             'expireddateend'  => null,
             'expireddatefrom' => null,
@@ -151,7 +87,73 @@ $info = [
         'destcode'            => '',
         'idcard'              => '',
         'insurefee'           => 0,
-        'logisticscode'       => 'shunfeng',
+        'logisticscode'       => 'tt',
+        'logisticsno'         => '',
+        'monthpayno'          => '',
+        'orginalregioncode'   => '',
+        'outtype'             => '002002',
+        'postcode'            => '',
+        'recvaddr'            => '',
+        'recvarea'            => '',
+        'recvcity'            => '',
+        'recvcus'             => '鲜生',
+        'recvmobile'          => '13530731922',
+        'recvphone'           => '',
+        'recvprovince'        => '',
+        'sndaddr'             => '',
+        'sndcus'              => '',
+        'sndmobile'           => '',
+        'sndphone'            => '',
+        'totalpcs'            => 0,
+        'totalvolume'         => 0,
+        'ytothree'            => '',
+        'globalLogisticsNo'   => '',
+        'globalLogisticsCode' => '',
+        'globalLogisticsUrl'  => 'http://www.pdfpath.com/pdfinfo',
+        'destsite'            => 'test',
+        'destCuscode'         => 'test',
+    ],
+];
+
+$declareConfig = [
+    'customerCode' => 'TT',
+    'sitecode'     => 'TEST01',
+];
+$tmp = $synAllocationService->startSyncing($info, $declareConfig);
+var_dump($tmp);
+die();
+
+//---------------------------------------
+//*************************************
+//销售单同步
+$info = [
+    'details' => [
+        [
+            'batchno'         => '',
+            'cusgoodsno'      => 'FW01027667543725',
+            'desp'            => '',
+            'expireddateend'  => null,
+            'expireddatefrom' => null,
+            'goodsname'       => '测试品01保质期',
+            'packageType'     => '',
+            'pcs'             => 1000,
+            'unitprice'       => '0',
+            'volume'          => '0',
+            'weight'          => '0',
+        ],
+    ],
+    'header' => [
+        'bighead'             => '',
+        'billstat'            => '009000',
+        'billtime'            => null,
+        'brandcode'           => 'CS',
+        'codfee'              => '0',
+        'cusbillno'           => '2017090211',
+        'desp'                => '',
+        'destcode'            => '',
+        'idcard'              => '',
+        'insurefee'           => 0,
+        'logisticscode'       => 'tt',
         'logisticsno'         => '',
         'monthpayno'          => '',
         'orginalregioncode'   => '',
