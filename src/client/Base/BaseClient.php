@@ -159,8 +159,8 @@ class BaseClient
     private function sign($data, $time)
     {
         $appsecret = $this->app['config']->get('secret');
-        $string    = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '+' . $appsecret . '+' . $time;
-        // $string = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . $appsecret . $time;
+        // $string    = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '+' . $appsecret . '+' . $time;
+        $string = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . $appsecret . $time;
 
         return base64_encode(md5($string));
     }

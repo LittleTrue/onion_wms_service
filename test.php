@@ -50,8 +50,8 @@ $synSalesBillService  = new SynSalesBillService($ioc_con_app);
 // ];
 
 // $declareConfig = [
-//     'customerCode' => 'TEST01',
-//     'sitecode'     => 'TT',
+//     'customerCode' => 'TT',
+//     'sitecode'     => 'TEST01',
 // ];
 // $tmp = $synPurchaseService->startSyncing($info, $declareConfig);
 // var_dump($tmp);
@@ -114,8 +114,8 @@ $synSalesBillService  = new SynSalesBillService($ioc_con_app);
 // ];
 
 // $declareConfig = [
-//     'customerCode' => 'TEST01',
-//     'sitecode'     => 'TT',
+//     'customerCode' => 'TT',
+//     'sitecode'     => 'TEST01',
 // ];
 // $tmp = $synAllocationService->startSyncing($info, $declareConfig);
 // var_dump($tmp);
@@ -178,8 +178,8 @@ $info = [
 ];
 
 $declareConfig = [
-    'customerCode' => 'TEST01',
-    'sitecode'     => 'TT',
+    'customerCode' => 'TT',
+    'sitecode'     => 'TEST01',
 ];
 $tmp = $synSalesBillService->startSyncing($info, $declareConfig);
 var_dump($tmp);
