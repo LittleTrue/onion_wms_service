@@ -39,7 +39,7 @@ trait MakesHttpRequests
     {
         if (200 != $response->getStatusCode()) {
             throw new ClientError(
-                "接口连接异常，异常码：{$response->getStatusCode()}，请联系管理员",
+                "接口连接异常，异常码：{$response->getStatusCode()}，异常信息:" . json_decode($response->getBody()->getContents(), true),
                 $response->getStatusCode()
             );
         }
