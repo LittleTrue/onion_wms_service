@@ -8,8 +8,10 @@ use onion\onionWmsService\SynPurchaseService;
 use onion\onionWmsService\SynSalesBillService;
 
 $config = [
-    'base_uri' => 'http://203.195.149.21:8080/x2oms/x2wms/api/index.do',
-    'secret'   => '123456',
+    'base_uri'     => 'http://203.195.149.21:8080/x2oms/x2wms/api/index.do',
+    'secret'       => '123456',
+    'customerCode' => 'TT',
+    'sitecode'     => 'TEST01',
 ];
 
 $ioc_con_app = new Application($config);
@@ -179,10 +181,7 @@ $info = [
     ],
 ];
 
-$declareConfig = [
-    'customerCode' => 'TT',
-    'sitecode'     => 'TEST01',
-];
-$tmp = $synSalesBillService->startSyncing($info, $declareConfig);
+
+$tmp = $synSalesBillService->startSyncing($info);
 var_dump($tmp);
 die();
