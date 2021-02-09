@@ -415,7 +415,7 @@ class Credential
             // field => 'rule1|rule2...' field => ['rule1','rule2',...]
             if (strpos($key, '|')) {
                 // 字段|描述 用于指定属性名称
-                [$key, $title] = explode('|', $key);
+                list($key, $title) = explode('|', $key);
             } else {
                 $title = isset($this->field[$key]) ? $this->field[$key] : $key;
             }
@@ -474,7 +474,7 @@ class Credential
                 $result = call_user_func_array($rule, [$value]);
             } else {
                 // 判断验证类型
-                [$type, $rule] = $this->getValidateType($key, $rule);
+                list($type, $rule) = $this->getValidateType($key, $rule);
 
                 $callback = isset(self::$type[$type]) ? self::$type[$type] : [$this, $type];
 
@@ -776,7 +776,7 @@ class Credential
         if ($rule) {
             $rule = explode(',', $rule);
 
-            [$width, $height, $type] = getimagesize($file->getRealPath());
+            list($width, $height, $type) = getimagesize($file->getRealPath());
 
             if (isset($rule[2])) {
                 $imageType = strtolower($rule[2]);
@@ -790,7 +790,7 @@ class Credential
                 }
             }
 
-            [$w, $h] = $rule;
+            list($w, $h) = $rule;
 
             return $w == $width && $h == $height;
         }
@@ -819,7 +819,7 @@ class Credential
     public function filter($value, $rule)
     {
         if (is_string($rule) && strpos($rule, ',')) {
-            [$rule, $param] = explode(',', $rule);
+            list($rule, $param) = explode(',', $rule);
         } elseif (is_array($rule)) {
             $param = isset($rule[1]) ? $rule[1] : null;
             $rule  = $rule[0];
@@ -839,7 +839,7 @@ class Credential
      */
     public function requireIf($value, $rule, $data)
     {
-        [$field, $val] = explode(',', $rule);
+        list($field, $val) = explode(',', $rule);
 
         if ($this->getDataValue($data, $field) == $val) {
             return !empty($value) || '0' == $value;
@@ -917,7 +917,7 @@ class Credential
         if (is_string($rule)) {
             $rule = explode(',', $rule);
         }
-        [$min, $max] = $rule;
+        list($min, $max) = $rule;
 
         return $value >= $min && $value <= $max;
     }
@@ -933,7 +933,7 @@ class Credential
         if (is_string($rule)) {
             $rule = explode(',', $rule);
         }
-        [$min, $max] = $rule;
+        list($min, $max) = $rule;
 
         return $value < $min || $value > $max;
     }
@@ -956,7 +956,7 @@ class Credential
 
         if (strpos($rule, ',')) {
             // 长度区间
-            [$min, $max] = explode(',', $rule);
+            list($min, $max) = explode(',', $rule);
             return $length >= $min && $length <= $max;
         }
 
@@ -1038,7 +1038,7 @@ class Credential
             $rule = explode(',', $rule);
         }
 
-        [$start, $end] = $rule;
+        list($start, $end) = $rule;
 
         if (!is_numeric($start)) {
             $start = strtotime($start);
@@ -1100,27 +1100,6 @@ class Credential
     }
 
     /**
-     * 字符串命名风格转换
-     * type 0 将 Java 风格转换为 C 的风格 1 将 C 风格转换为 Java 的风格
-     * @param  string $name    字符串
-     * @param  int    $type    转换类型
-     * @param  bool   $ucfirst 首字母是否大写（驼峰规则）
-     * @return string
-     */
-    public function parseName($name, $type = 0, $ucfirst = true)
-    {
-        if ($type) {
-            $name = preg_replace_callback('/_([a-zA-Z])/', function ($match) {
-                return strtoupper($match[1]);
-            }, $name);
-
-            return $ucfirst ? ucfirst($name) : lcfirst($name);
-        }
-
-        return strtolower(trim(preg_replace('/[A-Z]/', '_\\0', $name), '_'));
-    }
-
-    /**
      * 验证单个字段规则.
      * @param string $field 字段名
      * @param mixed  $value 字段值
@@ -1155,7 +1134,7 @@ class Credential
                 $info   = is_numeric($key) ? '' : $key;
             } else {
                 // 判断验证类型
-                [$type, $rule, $info] = $this->getValidateType($key, $rule);
+                list($type, $rule, $info) = $this->getValidateType($key, $rule);
 
                 if (isset($this->append[$field]) && in_array($info, $this->append[$field])) {
                 } elseif (array_key_exists($field, $this->remove) && (null === $this->remove[$field] || in_array($info, $this->remove[$field]))) {
@@ -1218,7 +1197,7 @@ class Credential
         }
 
         if (strpos($rule, ':')) {
-            [$type, $rule] = explode(':', $rule, 2);
+            list($type, $rule) = explode(':', $rule, 2);
             if (isset($this->alias[$type])) {
                 // 判断别名
                 $type = $this->alias[$type];
@@ -1377,5 +1356,27 @@ class Credential
 
             $this->only = $scene;
         }
+    }
+
+    /**
+     * 字符串命名风格转换
+     * type 0 将 Java 风格转换为 C 的风格 1 将 C 风格转换为 Java 的风格
+     * @access public
+     * @param  string  $name    字符串
+     * @param  integer $type    转换类型
+     * @param  bool    $ucfirst 首字母是否大写（驼峰规则）
+     * @return string
+     */
+    public function parseName($name, $type = 0, $ucfirst = true)
+    {
+        if ($type) {
+            $name = preg_replace_callback('/_([a-zA-Z])/', function ($match) {
+                return strtoupper($match[1]);
+            }, $name);
+
+            return $ucfirst ? ucfirst($name) : lcfirst($name);
+        }
+
+        return strtolower(trim(preg_replace("/[A-Z]/", "_\\0", $name), "_"));
     }
 }

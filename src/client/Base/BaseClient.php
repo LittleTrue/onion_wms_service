@@ -119,7 +119,7 @@ class BaseClient
         ];
 
         $send_string = 'customerCode=' . $param['customerCode'] . '&sitecode=' . $param['sitecode'] . '&data='
-        . $param['data'] . '&digest=' . $param['digest'] . '&timestamp=' . $param['timestamp'] .
+        . urlencode($param['data']) . '&digest=' . $param['digest'] . '&timestamp=' . $param['timestamp'] .
         '&version=' . $param['version'] . '&serviceBeanId=' . $param['serviceBeanId'] . '&method=' . $param['method'];
 
         $this->json = $send_string;
