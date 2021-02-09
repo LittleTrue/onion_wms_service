@@ -27,12 +27,12 @@ class Client extends BaseClient
     /**
      * 调拨单同步.
      */
-    public function startSyncing(array $infos)
+    public function startSyncing(array $infos, array $declareConfig)
     {
         $declareConfig = [
             'secret'        => $this->app['config']->get('secret'),
-            'sitecode'      => $this->app['config']->get('sitecode'),
-            'customerCode'  => $this->app['config']->get('customerCode'),
+            'sitecode'      => $declareConfig['sitecode'],
+            'customerCode'  => $declareConfig['customerCode'],
         ];
 
         //参数验证
