@@ -95,6 +95,17 @@ class BaseClient
     }
 
     /**
+     * Make a post request.
+     *
+     * @throws ClientError
+     */
+    public function httpPostParam($uri)
+    {
+        return $this->requestPost($uri, [RequestOptions::FORM_PARAMS => $this->json]);
+    }
+
+
+    /**
      * Set json params.
      *
      * @param array $json Json参数
@@ -118,13 +129,15 @@ class BaseClient
             'method'        => $method,
         ];
 
-        $send_string = 'customerCode=' . $param['customerCode'] . '&sitecode=' . $param['sitecode'] . '&data='
-        . urlencode($param['data']) . '&digest=' . $param['digest'] . '&timestamp=' . $param['timestamp'] .
-        '&version=' . $param['version'] . '&serviceBeanId=' . $param['serviceBeanId'] . '&method=' . $param['method'];
+        $this->json = $param;
 
-        $this->json = $send_string;
+        // $send_string = 'customerCode=' . $param['customerCode'] . '&sitecode=' . $param['sitecode'] . '&data='
+        // . urlencode($param['data']) . '&digest=' . $param['digest'] . '&timestamp=' . $param['timestamp'] .
+        // '&version=' . $param['version'] . '&serviceBeanId=' . $param['serviceBeanId'] . '&method=' . $param['method'];
 
-        return $send_string;
+        // $this->json = $send_string;
+
+        // return $send_string;
     }
 
     /**
@@ -132,7 +145,7 @@ class BaseClient
      */
     protected function requestPost($uri, array $options = [])
     {
-        $options = $this->_headers($options);
+        // $options = $this->_headers($options);
 
         return $this->request('POST', $uri, $options);
     }

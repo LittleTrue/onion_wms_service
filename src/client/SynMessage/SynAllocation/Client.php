@@ -49,9 +49,10 @@ class Client extends BaseClient
 
         $this->checkInfo($infos);
         
-        $send_data = $this->setParams($infos, $declareConfig, $this->method);
+        $this->setParams($infos, $declareConfig, $this->method);
 
-        return $this->httpGet('?' . $send_data);
+        // return $this->httpGet('?' . $send_data);
+        return $this->httpPostParam('');
     }
 
     public function checkInfo($data)
